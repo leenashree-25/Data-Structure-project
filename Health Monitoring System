@@ -1,0 +1,51 @@
+#include <stdio.h>
+    int pressure;       // can be used for diastolic pressure or other relevant pressure measurement
+    int heart_rate;     // in beats per minute
+} Patient;
+
+void displayPatientInfo(Patient patient) {
+    printf("Patient Name: %s\n", patient.name);
+    printf("Health Value: %d\n", patient.health_value);
+    printf("Blood Pressure: %d mmHg\n", patient.blood_pressure);
+    printf("Temperature: %.1f °C\n", patient.temperature);
+    printf("Pressure: %d\n", patient.pressure);
+    printf("Heart Rate: %d bpm\n", patient.heart_rate);
+    printf("Health Status: ");
+    if (patient.health_value <= 50) {
+        printf("Normal\n");
+    } else {
+        printf("Abnormal\n");
+    }
+}
+
+int main() {
+    Patient patient;
+
+    printf("Enter patient name: ");
+    fgets(patient.name, MAX_NAME_LENGTH, stdin);
+    size_t len = strlen(patient.name);
+    if (len > 0 && patient.name[len - 1] == '\n') {
+        patient.name[len - 1] = '\0'; // remove the newline character
+    }
+
+    printf("Enter patient health value: ");
+    scanf("%d", &patient.health_value);
+
+    printf("Enter patient blood pressure (systolic): ");
+    scanf("%d", &patient.blood_pressure);
+
+    printf("Enter patient temperature (°C): ");
+    scanf("%f", &patient.temperature);
+
+    printf("Enter patient pressure: ");
+    scanf("%d", &patient.pressure);
+
+    printf("Enter patient heart rate (bpm): ");
+    scanf("%d", &patient.heart_rate);
+
+    printf("\n");
+
+    displayPatientInfo(patient);
+
+    return 0;
+}
